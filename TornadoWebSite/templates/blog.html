@@ -1,0 +1,29 @@
+{%extends 'main.html'%}
+{%block content%}
+<div>  
+<p class='text-success h2'>{{blog[1]}}的专栏</p>  
+<br/>  
+<p class='text-danger h3'>{{blog[2]}}</p>  
+<p class='text-muted h6'>{{blog[4]}}</p>  
+<br/>  
+{%raw blog[3]%}  
+</div>  
+  
+<div>  
+<ul>  
+    {%for i in comments%}  
+    <li><a href='/user/{{i[2]}}' class='text-success h4'>{{i[2]}}</a>: <label class='text-warning h4'>{{i[3]}}</label>  <label class='text-muted h6'>{{i[4]}}</label></li>  
+    {%end%}  
+</ul>  
+</div>  
+  
+<div>  
+    <form action='/comment' method='post' class='form-inline'>  
+        <div class='form-group'>  
+            <label class='sr-only'>评论</label>  
+            <input type='text' name='comment' class='form-control' placeholder='请输入评论'></input>  
+        </div>  
+        <button type='submit' class='btn btn-default'>评论</button>  
+    </form>  
+</div>  
+{%end%}  

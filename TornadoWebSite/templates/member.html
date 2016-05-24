@@ -1,0 +1,9 @@
+{%extends 'main.html'%}
+{%block content%}
+<ul>  
+    {%for i in users%}  
+    <li><a href='/user/{{i[1]}}' class='text-success h4'>{{i[1]}}<small>（{{i[3]}}星级）</small></a></li>  
+    {%end%}  
+    <br/>  
+</ul>  
+{%end%}  

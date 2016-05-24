@@ -1,31 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'leemon'
 import tornado
-import MySQLdb
-conn = MySQLdb.connect(host="127.0.0.1",user="root",passwd="liminshiwo",db="website",charset="utf8")
-c = conn.cursor()
-
-def showAllBlog():
-    c.execute('select id,name,title,time from blog')
-    tmp=c.fetchall()
-    return tmp[::-1]
-
-def check(name,pw=None):
-    c.execute('select * from user')
-    data=c.fetchall()
-    if not pw: #没有密码，则查询用户是否存在
-        for i in data:
-            if name==i[1]:
-                return True
-        return False
-    else: #存在密码，则查询用户名和密码是否对应
-        for i in data:
-            if name==i[1]:
-                if pw==i[2]:
-                    return True
-                else:
-                    return False
-        return False  #都不存在这个用户
+from functions import *
 
 class indexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -41,5 +17,79 @@ class indexHandler(tornado.web.RequestHandler):
         else: #密码错误
             pass
         self.redirect('/')
+class registerHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('register.html')
+    def post(self):
+        name = self.get_argument('username')
+        pw = self.get_argument('password')
+        res = check(name,pw)
+        if res:
+            self.redirect('/register')
+        else:
+            insert(name,pw)
+            self.set_cookie('hackerName',name)
+            self.redirect('/')
+
+class memberHandler(tornado.web.RequestHandler):
+    def get(self):
+        name = self.get_cookie('hackerName')
+        users=show()
+        users.sort(key=lambda x:x[3],reverse=True)
+        self.render('member.html',cookieName=name,users=users)
+
+class chatHandler(tornado.web.RequestHandler):
+    def get(self,num):
+        name = self.get_cookie('hackerName')
+        chats = showChat()
+        n = len(chats)
+        if n%20 ==0:
+            pages=n//20
+        else:
+            pages=n//20 + 1
+        self.render('chat.html',cookieName=name,content=chats,pages=pages,num=num)
+    def post(self,num):
+        name = self.get_cookie('hackerName')
+        if not name:
+            return
+        newTopic = self.get_argument('topic')
+        insertChat(name,newTopic)
+        self.redirect('/chat/1')
+
+class postHandler(tornado.web.RequestHandler):
+    def get(self):
+        name = self.get_cookie('hackerName')
+        self.render('post.html',cookieName=name)
+    def post(self):
+        title = self.get_argument('title')
+        blog_md = self.get_argument('blog')
+        blog = translate(blog_md)
+        name =self.get_cookie('hackerName')
+        idvalue = insertBlog(name,title,blog)
+        self.redirect('/blog/'+str(idvalue))
+class logoutHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_cookie('hackerName','')
+        self.redirect('/')
+
+# class blogHandler(tornado.web.RequestHandler):
+#     def get(self,idvalue):
+#         selfname=self.get_cookie('hackerName')
+#         blog=showOneBlog(idvalue)
+#         comments=showComment(idvalue)
+#         self.render('blog.html',cookieName=selfname,blog=blog,comments=comments)
+#
+# class commentHandler(tornado.web.RequestHandler):
+#     def post(self):
+#         selfname=self.get_cookie('hackerName')
+#         comment=self.get_argument('comment')
+#         refer=self.request.headers.get('referer')
+#         for i in range(len(refer)-1,0,-1):
+#             if refer[i]=='/':
+#                 break
+#         blogid=refer[i+1:]
+#         print(blogid)
+#         addComment(blogid,selfname,comment)
+#         self.redirect('/blog/'+blogid)
 if __name__ == '__main__':
     pass
