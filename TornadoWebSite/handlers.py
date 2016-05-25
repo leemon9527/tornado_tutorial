@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'leemon'
 import tornado
+import urllib
 from functions import *
 
 class indexHandler(tornado.web.RequestHandler):
@@ -63,10 +64,15 @@ class postHandler(tornado.web.RequestHandler):
     def post(self):
         title = self.get_argument('title')
         blog_md = self.get_argument('blog')
-        blog = translate(blog_md)
+        print blog_md
+        blog = urllib.quote(blog_md)
+        print blog
         name =self.get_cookie('hackerName')
-        idvalue = insertBlog(name,title,blog)
-        self.redirect('/blog/'+str(idvalue))
+        if name:
+            idvalue = insertBlog(name,title,blog)
+            self.redirect('/blog/'+str(idvalue))
+        else:
+            self.redirect('/')
 class logoutHandler(tornado.web.RequestHandler):
     def get(self):
         self.set_cookie('hackerName','')
