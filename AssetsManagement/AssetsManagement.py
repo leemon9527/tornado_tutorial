@@ -12,11 +12,16 @@ sys.setdefaultencoding('utf-8')
 handlers=[
 		(r'/',mainHandler),
 		(r'/logout',logoutHandler),
+        (r'/login',loginHandler),
+		(r'/servers/(\d+)?',serversHandler),
+        (r'/server/(\d+)',serverHandler),
+
 
 		]
 settings={
 		'static_path':os.path.join(os.path.dirname(__file__),'static'),
 		'template_path':os.path.join(os.path.dirname(__file__),'templates'),
+        'login_url' :'/login',
 		}
 
 

@@ -1,0 +1,49 @@
+{%extends 'main.html'%}
+{%include 'header.html'%}
+{%include 'lefter.html'%}
+{%block righter%}
+<div class="span9">
+    <h1 class="page-title">Servers</h1>
+    <div class="btn-toolbar">
+        <button class="btn btn-primary"><i class="icon-plus"></i> New Server</button>
+        <button class="btn">Import</button>
+        <button class="btn">Export</button>
+        <div class="btn-group"></div>
+    </div>
+    <div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Server Name</th>
+          <th>IP Address</th>
+          <th>description</th>
+          <th style="width: 26px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for server in servers[6*int(num)-6:6*int(num)]%}
+        <tr>
+          <td>{{server[0]}}</td>
+          <td>{{server[1]}}</td>
+          <td>{{server[2]}}</td>
+          <td>{{server[3]}}</td>
+          <td>
+              <a href="server.html"><i class="icon-pencil"></i></a>
+              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+          </td>
+        </tr>
+        {%end%}
+      </tbody>
+    </table>
+</div>
+<div class="pagination">
+    <ul>
+    {%for i in range(1,page+1)%}
+        <li><a href="/servers/{{i}}">{{i}}</a></li>
+    {%end%}
+    </ul>
+</div>
+</div>
+{%end%}
+{%include 'footer.html'%}

@@ -6,7 +6,7 @@
             <ul class="nav pull-right">
                     
             </ul>
-            <a class="brand" href="index.html"><span class="first">Your</span> <span class="second">Company</span></a>
+            <a class="brand" href="#"><span class="first">Assets</span> <span class="second">Management</span></a>
         </div>
     </div>
 </div>
@@ -16,13 +16,14 @@
             <div class="block">
                 <div class="block-heading">Sign In</div>
                 <div class="block-body">
-                    <form>
-                        <label>Username</label>
-                        <input type="text" class="span12">
-                        <label>Password</label>
-                        <input type="password" class="span12">
-                        <a href="/" class="btn btn-primary pull-right">Sign In</a>
+                    <form action="/login" method="POST">
+                        <label>Username</label><input type="text" class="span12" name="username">
+                        <label>Password</label><input type="password" class="span12" name="password">
+                        <button type='submit' class='btn btn-primary pull-right'>Sign In</button>
                         <label class="remember-me"><input type="checkbox"> Remember me</label>
+                        {%if errmsg%}
+                        <a style="color:red">用户名或密码不对</a>
+                        {%end%}
                         <div class="clearfix"></div>
                     </form>
                 </div>
