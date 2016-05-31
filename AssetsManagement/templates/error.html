@@ -1,0 +1,28 @@
+{%extends 'main.html'%}
+
+{%block content%}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="http-error">
+            <h1>Oops!</h1>
+        {%if errorcode=='404' %}
+                <p class="info">This page doesn't exist.</p>
+        {%end%}
+        {%if errorcode=='403' %}
+                <p class="info">You don't have permission to view this page.</p>
+        {%end%}
+        {%if errorcode=='500'%}
+                <p class="info">Something happened that we didn't expect.</p>
+        {%end%}
+        {%if errorcode=='503'%}
+                <p class="info">We are experiencing a bit of a delay.<br>Try again shortly.</p>
+        {%end%}
+            <p><i class="icon-home"></i></p>
+            <p><a href="/">Back to the home page</a></p>
+        </div>
+    </div>
+</div>
+{%end%}
+
+
+

@@ -54,10 +54,25 @@ class serversHandler(tornado.web.RequestHandler):
         pass
 class serverHandler(tornado.web.RequestHandler):
     def get(self,num):
-        self.render('server.html')
+        projects=getProject()
+        username = self.get_cookie('user')
+        server = showServer(num)
+        if server:
+            self.render('server.html',username=username,projects=projects,server=server)
+        else:
+            self.redirect('/error/404')
     def post(self):
         pass
-
+class deleteHandler(tornado.web.RequestHandler):
+    def get(self,num):
+        id = num
+        delServerById(id)
+        self.redirect('/servers/')
+    def post(self):
+        pass
+class errorHandler(tornado.web.RequestHandler):
+    def get(self,errorcode='404'):
+        self.render('error.html',errorcode=errorcode)
 class logoutHandler(tornado.web.RequestHandler):
     def get(self):
         self.clear_cookie('user')
