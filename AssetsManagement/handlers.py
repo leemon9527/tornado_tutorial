@@ -9,8 +9,7 @@ class mainHandler(tornado.web.RequestHandler):
     def get(self):
         username=self.get_cookie('user')
         if username:
-            projects=getProject()
-            self.render('index.html',projects=projects,username=username)
+            self.render('index.html',username=username)
         else:
             self.redirect('/login')
 
@@ -29,7 +28,6 @@ class loginHandler(tornado.web.RequestHandler):
         res = check(username,passwd)
         if res:
             self.set_cookie('user',username)
-            projects=getProject()
             self.redirect('/')
         else:
             errmsg=True
@@ -42,23 +40,21 @@ class serversHandler(tornado.web.RequestHandler):
         if not num:
             num=1
         servers = showServers()
-        projects=getProject()
         username=self.get_cookie('user')
         n=len(servers)
         if n%6==0:
             page=n/6
         else:
             page=n/6 +1
-        self.render('servers.html',servers=servers,username=username,projects=projects,num=num,page=page)
+        self.render('servers.html',servers=servers,username=username,num=num,page=page)
     def post(self,num):
         pass
 class serverHandler(tornado.web.RequestHandler):
     def get(self,num):
-        projects=getProject()
         username = self.get_cookie('user')
         server = showServer(num)
         if server:
-            self.render('server.html',username=username,projects=projects,server=server)
+            self.render('server.html',username=username,server=server)
         else:
             self.redirect('/error/404')
     def post(self):

@@ -4,10 +4,7 @@ import tornado.escape
 import tornado.ioloop
 import tornado.web
 import re
-from tornado.concurrent import Future
-from tornado import gen
 from tornado.options import define, options, parse_command_line
-import thread
 import os
 
 define("port", default=8899, help="run on the given port", type=int)
