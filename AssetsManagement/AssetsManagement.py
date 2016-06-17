@@ -17,6 +17,7 @@ handlers=[
         (r'/server/(\d+)',serverHandler),
 		(r'/delete/(\d+)',deleteHandler),
 		(r'/error/(\d+)?',errorHandler),
+		(r'/table_test',tableHandler),
 
 
 

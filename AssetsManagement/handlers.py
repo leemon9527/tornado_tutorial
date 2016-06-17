@@ -4,6 +4,10 @@ import tornado
 from db import *
 
 errmsg=False
+class tableHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('welcome.html')
+
 
 class mainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -12,7 +16,6 @@ class mainHandler(tornado.web.RequestHandler):
             self.render('index.html',username=username)
         else:
             self.redirect('/login')
-
 class loginHandler(tornado.web.RequestHandler):
     def get(self):
         if self.get_current_user():

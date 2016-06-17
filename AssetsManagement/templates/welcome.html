@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Table Examples</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap3/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-table/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap3/css/bootstrap-editable.css">
+    <script src="/static/lib/jquery-1.8.1.min.js"></script>
+    <script src="/static/lib/bootstrap3/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Bootstrap Table Examples <a href="#" class="btn btn-primary" role="button" target="_blank">Learn more &raquo;</a></h1>
+    <div id="toolbar">
+        <button id="remove" class="btn btn-danger" disabled>
+            <i class="glyphicon glyphicon-remove"></i> Delete
+        </button>
+    </div>
+    <table id="table"
+           data-toolbar="#toolbar"
+           data-search="true"
+           data-show-refresh="true"
+           data-show-toggle="true"
+           data-show-columns="true"
+           data-show-export="true"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
+           data-pagination="true"
+           data-id-field="id"
+           data-page-list="[10, 25, 50, 100, ALL]"
+           data-show-footer="false"
+           data-side-pagination="server"
+           data-response-handler="responseHandler">
+    </table>
+</div>
+<script src="/static/lib/bootstrap-table/js/table.js"></script>
+</body>
+</html>
