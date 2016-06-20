@@ -5,8 +5,8 @@
 <div class="span10">
             <h1 class="page-title">Edit Server</h1>
 <div class="btn-toolbar">
-        <button class="btn btn-primary update"><i class="icon-save" ></i> Save</button>
-        <a href="#myModal" id={{server[0]}} data-toggle="modal" class="btn" onclick="setDelId(this.id)">Delete</a>
+        <button class="btn btn-primary update_server"><i class="icon-save" ></i> 保存</button>
+        <a href="#myModal" data-toggle="modal" class="btn btn-primary" onclick="setDelId(this.id)"><i class="icon-remove" ></i>删除</a>
 <div class="btn-group">
     <input type="hidden" id="del_Id"/>
     <input type="hidden" id="textChange">
@@ -14,19 +14,19 @@
 </div>
 <div class="well">
     <div id="myTabContent" class="tab-content">
-        <label class="span1">主机ID:</label><label id="serverId">{{server[0]}}</label><br>
-        <label class="span1">主机名</label><input type="text" id="serverName" value="{{server[1]}}" class="input-xlarge span4 textChange"><br>
-        <label class="span1">内网IP</label><input type="text" id="serverIPAddr" value="{{server[2]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">CPU</label><input type="text" id="serverCPU" value="{{server[3]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">内存</label><input type="text" id="serverMem" value="{{server[4]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">硬盘</label><input type="text" id="serverDisk" value="{{server[5]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">网卡</label><input type="text" id="serverNetCard" value="{{server[6]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">内核</label><input type="text" id="serverKernel" value="{{server[7]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">操作系统</label><input type="text" id="serverOS" value="{{server[8]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">序列号</label><input type="text" id="serverPower" value="{{server[9]}}" class="span4 input-xlarge textChange"><br>
-        <label class="span1">双电源</label><input type="text" id="serverSN" value="{{server[10]}}" class="span4 input-xlarge textChange"><a style="color:blue"> 双电源值1=是0=否</a><br>
-        <label class="span1">上架时间</label><input type="text" id="serverInuseTime" value="{{server[11]}}" class="span4 input-xlarge  textChange"><br>
-        <label class="span1">简介</label><textarea id="serverDesc" rows="3" class="span4 input-xlarge textChange">{{server[12]}}</textarea>
+        <label class="span1">主机ID:</label><label id="id">{{server[0]}}</label><br>
+        <label class="span1">主机名</label><input type="text" id="hostname" value="{{server[1]}}" class="input-xlarge span4 textChange"><br>
+        <label class="span1">内网IP</label><input type="text" id="IP" value="{{server[2]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">CPU</label><input type="text" id="cpu" value="{{server[3]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">内存</label><input type="text" id="mem" value="{{server[4]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">硬盘</label><input type="text" id="disk" value="{{server[5]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">网卡</label><input type="text" id="net_card" value="{{server[6]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">内核</label><input type="text" id="kernrl" value="{{server[7]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">操作系统</label><input type="text" id="os" value="{{server[8]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">序列号</label><input type="text" id="sn" value="{{server[9]}}" class="span4 input-xlarge textChange"><br>
+        <label class="span1">双电源</label><input type="text" id="isDoublePower" value="{{server[10]}}" class="span4 input-xlarge textChange"><a style="color:blue"> 双电源值1=是0=否</a><br>
+        <label class="span1">上架时间</label><input type="text" id="inuse_time" value="{{server[11]}}" class="span4 input-xlarge  textChange"><br>
+        <label class="span1">简介</label><textarea id="description" rows="3" class="span4 input-xlarge textChange">{{server[12]}}</textarea>
       </div>
   </div>
 <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

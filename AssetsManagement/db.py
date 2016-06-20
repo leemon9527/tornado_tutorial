@@ -67,6 +67,19 @@ def delServerById(id):
         db.close()
         return False
 
+def updateServer(sql):
+    db,c=conn()
+    try:
+        c.execute(sql)
+        db.commit()
+        return True
+    except:
+        db.rollback()
+        return False
+    db.close()
+
+
+
 if __name__ == '__main__':
     projects=getProject()
     for i in projects:
